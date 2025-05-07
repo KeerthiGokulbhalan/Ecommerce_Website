@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}E-Commerce Store{% endblock %}</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-container">
+        <h1><a href="{{ url_for('home') }}">ShopNow</a></h1>
+        <div class="nav-links">
+          {% if session.user_id %}
+          <span>Hello, {{ session.username }}</span>
+          <a href="{{ url_for('logout') }}">Logout</a>
+          {% else %}
+          <a href="{{ url_for('login') }}">Login</a>
+          <a href="{{ url_for('register') }}">Register</a>
+          {% endif %}
+          <a href="{{ url_for('view_cart') }}">Cart</a>
+          <a href="{{ url_for('products') }}">Products</a>
+          <a href="{{ url_for('order_history') }}">Orders</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    <div class="flash-messages">
+      {% with messages = get_flashed_messages() %} {% if messages %} {% for
+      message in messages %}
+      <div class="flash">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %}
+    </div>
+
+    <!-- Main Content -->
+    <main class="content">{% block content %}{% endblock %}</main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 ShopNow - DBMS Mini Project</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

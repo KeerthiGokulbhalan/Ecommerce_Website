@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block title %}Order History - ShopNow{% endblock %}
+{% block content %}
+<h2>Your Order History</h2>
+<table class="cart-table">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th>Total</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+    <tr>
+      <td>#{{ order.OrderID }}</td>
+      <td>{{ order.OrderDate.strftime('%Y-%m-%d') }}</td>
+      <td>{{ order.StatusName }}</td>
+      <td>${{ "%.2f"|format(order.Total) }}</td>
+      <td>
+        <a href="{{ url_for('view_order_details', order_id=order.OrderID) }}"
+          >View Details</a
+        >
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block title %}Home - ShopNow{% endblock %} {% block
+content %}
+<section class="hero">
+  <h1>Welcome to ShopNow</h1>
+  <p>Discover the best products at great prices.</p>
+</section>
+
+<div class="products-grid">
+  {% for product in products %}
+  <div class="product-card">
+    <h3>{{ product.ProductName }}</h3>
+    <p>{{ product.Description }}</p>
+    <p>$ {{ "%.2f"|format(product.Price) }}</p>
+    <a href="/cart/add/{{ product.ProductID }}" class="btn-add-to-cart"
+      >Add to Cart</a
+    >
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

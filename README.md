@@ -1,4 +1,4 @@
-# E-Commerce Website - DBMS Mini Project
+# E-Commerce Website 
 
 ## 🛠️ Technologies Used
 
